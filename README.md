@@ -14,4 +14,4 @@ asc_testmain();
 ```
 
 todo:
-- shorter instruction and operand code
+- shorter instruction and operand code (It will make the C++ source more complicated and need more test)
