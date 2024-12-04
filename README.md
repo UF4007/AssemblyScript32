@@ -6,3 +6,12 @@ Suitable when:
 - resource-limited device, such as MCU
 - state synchronization required scenarios
 - stable, high-performance, and unlimited script language (hint on Westwood Ra2 shitty trigger system)
+
+demo:
+```C++
+#include "AS32_demo.h"
+asc_testmain();
+```
+
+todo:
+- shorter instruction and operand code
