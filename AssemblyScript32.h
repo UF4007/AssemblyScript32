@@ -381,7 +381,12 @@ namespace asc{
                         *espad = lv ^ lv2;
                         break;
                     case opcode_t::SHL:
-                        *espad = lv << lv2;
+                        if (lv2 > 0) {
+                            *espad = lv << lv2;
+                        }
+                        else if (lv2 < 0) {
+                            *espad = lv >> -lv2;
+                        }
                         break;
                     case opcode_t::CMP:
                         *espad = lv == lv2;
@@ -464,6 +469,8 @@ namespace asc{
                             EIP = lv;
                             isJump = true;
                         }
+                        else
+                            EIP += 1 * sizeof(uint32_t);
                         break;
                     case opcode_t::JZ:
                         if (*espad == 0)
@@ -471,6 +478,8 @@ namespace asc{
                             EIP = lv;
                             isJump = true;
                         }
+                        else
+                            EIP += 1 * sizeof(uint32_t);
                         break;
                     }
                 }
