@@ -80,8 +80,10 @@ namespace asc{
             {
                 int32_t *addr = nullptr;
                 if (addressing_w(opt, op, addr))
+                {
                     ret = *addr;
-                return true;
+                    return true;
+                }
             }
             }
             return false;
