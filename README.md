@@ -20,6 +20,7 @@ description:
   - two **addressing mode** (1*2 bytes)
   - **operand 1** (4 bytes, if opcode requires this)
   - **operand 2** (4 bytes, if opcode requires this)
+- there is only one operand type: int32
 - each **elf** has four sections:
   - basic: name (char[8]), referenced count
   - dependency: dependency name table, import functions table
