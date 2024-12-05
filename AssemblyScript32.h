@@ -9,7 +9,6 @@ namespace asc{
     // instruction: opcode(16) | address1(8) | address2(8) | oprand1(32, if have) | oprand2(32, if have)
     enum class opcode_t : uint16_t
     {
-        EXPAND = 0x01, // reserved instruction
         MOV = 0x89,    // (op1,op2):move op2 to op1
         MOVE = 0xB8,   // (op1):move op1 to ESP
         XCHG = 0x87,   // (op1,op2):exchange op2 and op1
@@ -28,11 +27,11 @@ namespace asc{
         NOT = 0xFa, // (op1):~op1, save result to [ESP]
         SHL = 0xD1, // (op1,op2):op1 << op2, save result to [ESP], SHR negative.
 
-        PUSH = 0x50, // (op1):set [ESP] to op1, and ESP increase 4
+        PUSH = 0x50, // (op1):set op1 to [ESP], and ESP increase 4
         POP = 0x58,  // ():ESP reduce 4
-        JMP = 0xE9,  // (op1):set EIP to op1
-        JZ = 0x74,   // (op1):if [ESP] zero, set EIP to op1
-        JNZ = 0x75,  // (op1):if [ESP] not zero, set EIP to op1
+        JMP = 0xE9,  // (op1):set op1 to EIP
+        JZ = 0x74,   // (op1):if [ESP] zero, set op1 to EIP
+        JNZ = 0x75,  // (op1):if [ESP] not zero, set op1 to EIP
         CALL = 0xE8, // (op1):call callable op1
         CALLEXT = 0xFF, // (op1):call callable op1 in extlib
         RET = 0xC3,  // ():return
@@ -207,6 +206,8 @@ namespace asc{
             return true;
         case oprand_t::DATA_IA:
         {
+            if (elf_local == nullptr)
+                return false;
             uint32_t off = op;
             if (off >= elf_local->data.size())
                 return false;
@@ -264,8 +265,6 @@ namespace asc{
             bool isJump = false;
             switch (opcode)
             {
-                // case opcode_t::EXPAND:
-                //     break;
             case opcode_t::MOV:
             {
                 int32_t op1 = *(int32_t*)&assembly[EIP + sizeof(opcode_t) + 2 * sizeof(oprand_t)];
