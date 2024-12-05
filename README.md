@@ -13,5 +13,23 @@ demo:
 asc_testmain();
 ```
 
+description:
+- each **function** has two registers, EIP (program counter) and ESP (universal register), and a fixed-size binary stack/program mixed assembly byte area.
+- each **32bit instruction** comprised of three parts:
+  - one **opcode** (2 bytes)
+  - two **addressing mode** (1*2 bytes)
+  - **operand 1** (4 bytes, if opcode requires this)
+  - **operand 2** (4 bytes, if opcode requires this)
+- each **elf** has four sections:
+  - basic: name (char[8]), referenced count
+  - dependency: dependency name table, import functions table
+  - text section: an array store functions
+  - data section: The global data section, can be addressed by instruction from the text section in the same elf file
+- **CALL**: an assembly instruction to call another function, ESP from the caller function will be addressed as [EBP + operand] in the callee function, to deliver stipulation parameters.
+  - local call: operand 1 addressing result >= 0, call function by text section array index of this elf.
+  - import call: operand 1 addressing result < 0, call function by import function table index of this elf. operand 1 will be negative then plus 1.
+- **CALLEXT**: **extlib** records the extern C++ function that can call by instruction CALLEXT.
+  - see **AS32_extlib.h** as demo
+
 todo:
-- shorter 8-bit instructions and operand code (It will make the C++ source more complicated and need more test)
+- shorter **8-bit instructions** (It will make the C++ source more complicated and need more test)
