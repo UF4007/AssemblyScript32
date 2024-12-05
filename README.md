@@ -34,3 +34,4 @@ description:
 
 todo:
 - shorter **8-bit instructions** (It will make the C++ source more complicated and need more test)
+- dynamic memory allocation(with individual instruction) and safety heap addressing
