@@ -27,8 +27,8 @@ description:
   - data section: The global data section, can be addressed by instruction from the text section in the same elf file
 - **CALL**: an assembly instruction to call another function, ESP from the caller function will be addressed as [EBP + operand] in the callee function, to deliver stipulation parameters.
   - local call: operand 1 addressing result >= 0, call function by text section array index of this elf.
-  - import call: operand 1 addressing result < 0, call function by import function table index of this elf. operand 1 will be negative then plus 1.
-- **CALLEXT**: **extlib** records the extern C++ function that can call by instruction CALLEXT.
+  - import call: operand 1 addressing result < 0, call function by import function table index of this elf. operand 1 will be negatived then reduce 1.
+- **CALLEXT**: **extlib** records the extern C++ function that can be called by instruction CALLEXT.
   - see **AS32_extlib.h** as demo
 
 todo:
