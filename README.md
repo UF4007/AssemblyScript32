@@ -1,5 +1,7 @@
 ## AssemblyScript32
 
+#### 100% complete, 0% todo pending
+
 Simple 32-bit assembly-like script language.
 
 Suitable when:
@@ -33,5 +35,6 @@ description:
   - see **AS32_extlib.h** as demo
 
 todo:
+- a vue website editor for AssemblyScript32
 - shorter **8-bit instructions** (It will make the C++ source more complicated and need more test)
 - dynamic memory allocation(with individual instruction) and safety heap addressing
