@@ -1,6 +1,6 @@
 ## AssemblyScript32
 
-#### 100% complete, 0% todo pending
+### 100% complete, 0% todo pending
 
 Simple 32-bit assembly-like script language.
 
